@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    // 编译器选项配置
+    "baseUrl": ".", // 非绝对地址的模块会基于这个目录去解析，默认值是当前目录
+    "target": "esnext", // 指定 ES 版本, esnext 最新
+    "useDefineForClassFields": true, // https://cn.vitejs.dev/guide/features.html#typescript-compiler-options
+    "module": "esnext", // 要使用的模板标准
+    "moduleResolution": "node", // 指定模块解析策略，'node' 用于 Node.js 的 CommonJS 实现
+    "strict": true,
+    "forceConsistentCasingInFileNames": true, // 禁止对同一个文件的不一致的引用
+    // "strictFunctionTypes": false, // 禁用函数参数双向协变检查
+    "jsx": "preserve", // 在 .tsx 中支持 JSX
+    "allowJs": true, // 允许编译器编译JS，JSX文件
+    // "checkJs": true, // 在 .js文件中报告错误。与 allowJs配合使用
+    "sourceMap": true, // 生成目标文件的 sourceMap 文件
+    "esModuleInterop": true, // CommonJS/AMD/UMD 模块导入兼容
+    "allowSyntheticDefaultImports": true, // 允许如 import React from "react" 这样的默认导入，（从没有设置默认导出的模块中默认导入，仅为了类型检查）
+    "importHelpers": true, // 模块导入辅助，通过 tslib 引入 helper 函数，https://www.typescriptlang.org/tsconfig#importHelpers
+    "resolveJsonModule": true, // 允许导入带有“.json”扩展名的模块
+    "noUnusedLocals": true, // 若有未使用的局部变量则报错
+    "noUnusedParameters": true, // 若有未使用的参数则报错
+    "experimentalDecorators": true, // 启用实验性的ES装饰器
+    "suppressImplicitAnyIndexErrors": true, // 禁止报告对象索引的隐式 any 错误
+    "ignoreDeprecations": "5.0", // 加这一行是因为不加上面一行报错
+    "lib": ["dom", "esnext"], // 编译时引入的 ES 功能库
+    "types": ["vite/client"], // 指定加载【哪些】声明文件包，如不设置此项，默认会加载全部能找到的 node_modules/@types/xxx 包
+    // "vite/client"用于 vite 项目中的一些类型定义补充，https://www.typescriptlang.org/tsconfig#types
+    "typeRoots": ["./node_modules/@types/", "./types", "./node_modules"],
+    "noImplicitAny": false, // 是否在表达式和声明上有隐含的 any类型时报错。
+    "skipLibCheck": true, // 跳过库声明文件的类型检查
+    "isolatedModules": false, // 将每个文件作为单独的模块（与“ts.transpileModule”类似）
+    "paths": {
+      // 配置具体如何解析 require/import 的导入，值是基于 baseUrl 路径的映射列表。https://www.typescriptlang.org/tsconfig#paths
+      "/@/*": ["src/*"],
+      "/#/*": ["types/*"]
+    }
+  },
+  "include": [
+    // 需要被编译的文件
+    "tests/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "build/**/*.ts",
+    "build/**/*.d.ts",
+    "mock/**/*.ts",
+    "vite.config.ts",
+    "components.d.ts",
+    "build/plugins/mock.ts"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.js"] // 解析时跳过的文件
+}
